@@ -18,6 +18,11 @@ void Output_printStart(void)
     printf("Get ready...\n");
 }
 
+void Output_printFalseStart(void)
+{
+    printf("Too Soon!\n");
+}
+
 void Output_printDirection(bool up)
 {
     if (up) {

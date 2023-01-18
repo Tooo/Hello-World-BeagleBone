@@ -9,6 +9,8 @@ void Output_printInstructions(void);
 
 void Output_printStart(void);
 
+void Output_printFalseStart(void);
+
 void Output_printDirection(bool up);
 
 void Output_printResult(bool correct);
