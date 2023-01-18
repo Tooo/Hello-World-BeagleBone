@@ -1,6 +1,8 @@
-#include <stdio.h>
+#include "output.h"
 
 int main () {
-    printf("Hello embedded world, from Travis!\n");
+    Output_printWelcome();
+
+    Output_printInstructions();
     return 0;
 }
