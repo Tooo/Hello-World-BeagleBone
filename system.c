@@ -30,6 +30,19 @@ void System_runCommand(char* command)
 
 void System_readFile(char* fileName, char* buffer)
 {
+    FILE *pFile = fopen(fileName, "r");
+    if (pFile == NULL) {
+        printf("ERROR: Unable to open %s.\n", fileName);
+        exit(1);
+    }
+
+    fgets(buffer, BUFFER_MAX_LENGTH, pFile);
+
+    fclose(pFile);
+}
+
+void System_writeFile(char* fileName, char* buffer)
+{
     FILE *pFile = fopen(fileName, "w");
     if (pFile == NULL) {
         printf("ERROR: Unable to open %s.\n", fileName);
@@ -41,19 +54,6 @@ void System_readFile(char* fileName, char* buffer)
         printf("ERROR: Cannot write %s.\n", fileName);
         exit(1);
     }
-
-    fclose(pFile);
-}
-
-void System_writeFile(char* fileName, char* buffer)
-{
-    FILE *pFile = fopen(fileName, "r");
-    if (pFile == NULL) {
-        printf("ERROR: Unable to open %s.\n", fileName);
-        exit(1);
-    }
-
-    fgets(buffer, BUFFER_MAX_LENGTH, pFile);
 
     fclose(pFile);
 }
