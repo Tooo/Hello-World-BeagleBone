@@ -1,15 +1,17 @@
 #ifndef OUTPUT_H_
 #define OUTPUT_H_
 
+#include <stdbool.h>
+
 void Output_printWelcome(void);
 
 void Output_printInstructions(void);
 
 void Output_printStart(void);
 
-void Output_printDirection();
+void Output_printDirection(bool up);
 
-void Output_printResult();
+void Output_printResult(bool correct);
 
 void Output_printBestTime(void);
 

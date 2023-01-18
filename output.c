@@ -1,4 +1,6 @@
+#include "output.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 void Output_printWelcome(void)
 {
@@ -16,14 +18,22 @@ void Output_printStart(void)
     printf("Get ready...\n");
 }
 
-void Output_printDirection()
+void Output_printDirection(bool up)
 {
-
+    if (up) {
+        printf("Press UP now!\n");
+    } else {
+        printf("Press DOWN now!\n");
+    }
 }
 
-void Output_printResult()
+void Output_printResult(bool correct)
 {
-
+    if (correct) {
+        printf("Correct!\n");
+    } else {
+        printf("Incorrect.\n");
+    }
 }
 
 void Output_printBestTime(void)
@@ -33,7 +43,7 @@ void Output_printBestTime(void)
 
 void Output_printReactionTime(long long current, long long best)
 {
-    printf("Your reaction time was %ld; best so far in game is %ld", current, best);
+    printf("Your reaction time was %lld; best so far in game is %lld", current, best);
 }
 
 void Output_printUserQuit(void)
