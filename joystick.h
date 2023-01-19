@@ -6,10 +6,13 @@ typedef enum {
     JOYSTICK_DOWN,
     JOYSTICK_LEFT,
     JOYSTICK_RIGHT,
+    JOYSTICK_DIRECTION_COUNT,
     JOYSTICK_NO_DIRECTION
 } JoystickDirection;
 
 void Joystick_intialize(void);
+
+void Joystick_cleanUp(void);
 
 JoystickDirection Joystick_getDirection(void);
 

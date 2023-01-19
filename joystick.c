@@ -6,6 +6,12 @@
 #include "system.h"
 #include "timer.h"
 
+static char* directionFile = "/sys/class/gpio/gpio%d/direction";
+static char* valueFile = "/sys/class/gpio/gpio%d/value";
+
+// Up, Down, Left, Rigth
+static int joystickGPIO[JOYSTICK_DIRECTION_COUNT] = {26, 46, 65, 47};
+
 void Joystick_intialize(void)
 {
     // Configure pin's functions
@@ -17,37 +23,29 @@ void Joystick_intialize(void)
     // Assume GPIO already exported
 
     // Configure pin to GPIO
-    System_writeFile("/sys/class/gpio/gpio26/direction", "in");
-    System_writeFile("/sys/class/gpio/gpio46/direction", "in");
-    System_writeFile("/sys/class/gpio/gpio65/direction", "in");
-    System_writeFile("/sys/class/gpio/gpio47/direction", "in");
+    for (int i; i < JOYSTICK_DIRECTION_COUNT; i++) {
+        char filePath[BUFFER_MAX_LENGTH];
+        snprintf(filePath, BUFFER_MAX_LENGTH, directionFile, joystickGPIO[i]);
+        System_writeFile(filePath, "in");
+    }
+}
+
+void Joystick_cleanUp(void)
+{
+    // do nothing
 }
 
 JoystickDirection Joystick_getDirection(void)
 {
-    char buffer[BUFFER_MAX_LENGTH];
-    System_readFile("/sys/class/gpio/gpio26/value", buffer);
-    if (strncmp(buffer, "0", 1) == 0) {
-        return JOYSTICK_UP;
-    }
+    for (int i; i < JOYSTICK_DIRECTION_COUNT; i++) {
+        char buffer[BUFFER_MAX_LENGTH];
+        char filePath[BUFFER_MAX_LENGTH];
 
-    char buffer2[BUFFER_MAX_LENGTH];
-    System_readFile("/sys/class/gpio/gpio46/value", buffer2);
-    if (strncmp(buffer2, "0", 1) == 0) {
-        return JOYSTICK_DOWN;
+        snprintf(filePath, BUFFER_MAX_LENGTH, valueFile, joystickGPIO[i]);
+        System_readFile(filePath, buffer);
+        if (strncmp(buffer, "0", 1) == 0) {
+            return i;
+        }
     }
-
-    char buffer3[BUFFER_MAX_LENGTH];
-    System_readFile("/sys/class/gpio/gpio65/value", buffer3);
-    if (strncmp(buffer3, "0", 1) == 0) {
-        return JOYSTICK_LEFT;
-    }
-
-    char buffer4[BUFFER_MAX_LENGTH];
-    System_readFile("/sys/class/gpio/gpio47/value", buffer4);
-    if (strncmp(buffer4, "0", 1) == 0) {
-        return JOYSTICK_RIGHT;
-    }
-
     return JOYSTICK_NO_DIRECTION;
 }

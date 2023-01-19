@@ -6,7 +6,6 @@
 
 static char* brightnessFile = "/sys/class/leds/beaglebone:green:usr%d/brightness";
 static char* triggerFile = "/sys/class/leds/beaglebone:green:usr%d/trigger";
-static char* none = "none";
 
 void Led_intialize(void)
 {
@@ -14,7 +13,7 @@ void Led_intialize(void)
     for (int i; i < LED_COUNT; i++) {
         char filePath[BUFFER_MAX_LENGTH];
         snprintf(filePath, BUFFER_MAX_LENGTH, triggerFile, i);
-        System_writeFile(triggerFile, none);
+        System_writeFile(triggerFile, "none");
     }
 }
 
