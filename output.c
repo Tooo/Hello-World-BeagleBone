@@ -58,5 +58,5 @@ void Output_printUserQuit(void)
 
 void Output_printTimeoutQuit(void)
 {
-    printf("No input within 5000ms; quitting!");
+    printf("No input within 5000ms; quitting!\n");
 }
