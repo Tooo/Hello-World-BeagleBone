@@ -11,7 +11,7 @@ void System_runCommand(char* command)
 
     // Ignore output of the command; but consume it
     // so we don't get an error when closing the pipe.
-    char buffer[1024];
+    char buffer[BUFFER_MAX_LENGTH];
     while (!feof(pipe) && !ferror(pipe)) {
         if (fgets(buffer, sizeof(buffer), pipe) == NULL) {
             break;

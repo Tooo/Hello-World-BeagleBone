@@ -10,14 +10,12 @@ static char* triggerFile = "/sys/class/leds/beaglebone:green:usr%d/trigger";
 static char* delayOnFile = "/sys/class/leds/beaglebone:green:usr%d/delay_on";
 static char* delayOffFile = "/sys/class/leds/beaglebone:green:usr%d/delay_off";
 
+static const int TIMER_WAIT_TIME_MS = 300;
+
 void Led_intialize(void)
 {
     // Set LED triggers to None
-    for (int i = 0; i < LED_COUNT; i++) {
-        char filePath[BUFFER_MAX_LENGTH];
-        snprintf(filePath, BUFFER_MAX_LENGTH, triggerFile, i);
-        System_writeFile(filePath, "none");
-    }
+    Led_unflashAll();
 }
 
 void Led_cleanUp(void)
@@ -52,7 +50,7 @@ void Led_flashAll(int hz)
     int duration = 1000 / hz;
     char durationString[5];
     snprintf(durationString, 5, "%d", duration);
-    Timer_sleepForMs(300);
+    Timer_sleepForMs(TIMER_WAIT_TIME_MS);
 
     for (int i = 0; i < LED_COUNT; i++) {
         char filePath[BUFFER_MAX_LENGTH];
