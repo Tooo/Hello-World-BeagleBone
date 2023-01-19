@@ -1,8 +1,6 @@
 #ifndef JOYSTICK_H_
 #define JOYSTICK_H_
 
-#define EXPORT_GPIO_FILE "/sys/class/gpio/export"
-
 typedef enum {
     JOYSTICK_UP = 0,
     JOYSTICK_DOWN,

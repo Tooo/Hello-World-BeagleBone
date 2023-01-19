@@ -14,15 +14,7 @@ void Joystick_intialize(void)
     System_runCommand("config-pin p8.16 gpio");
     System_runCommand("config-pin p8.18 gpio");
 
-    // Configure pin to GPIO
-    System_writeFile("/sys/class/gpio/export", "26");
-    Timer_sleepForMs(300);
-    System_writeFile("/sys/class/gpio/export", "46");
-    Timer_sleepForMs(300);
-    System_writeFile("/sys/class/gpio/export", "65");
-    Timer_sleepForMs(300);
-    System_writeFile("/sys/class/gpio/export", "47");
-    Timer_sleepForMs(300);
+    // Assume GPIO already exported
 
     // Configure pin to GPIO
     System_writeFile("/sys/class/gpio/gpio26/direction", "in");
