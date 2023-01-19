@@ -7,6 +7,15 @@
 #include "joystick.h"
 #include "timer.h"
 
+#define TIMEOUT_TIME_MS 5000
+#define MIN_WAIT_TIME_MS 500
+#define MAX_WAIT_TIME_MS 3000
+
+#define WIN_FLASH_HZ 4
+#define WIN_FLASH_TIME_MS 500
+#define LOSE_FLASH_HZ 10
+#define LOSE_FLASH_TIME_MS 1000
+
 static void intializeHello(void);
 static void cleanUpHello(void);
 
@@ -16,13 +25,13 @@ int main () {
     intializeHello();
 
     bool isGameOver = false;
-    long long bestTime = 5000;
+    long long bestTime = TIMEOUT_TIME_MS;
     while (!isGameOver) {
         Output_printStart();
-        Led_turnOn(1);
-        Led_turnOn(2);
+        Led_turnOn(LED1);
+        Led_turnOn(LED2);
 
-        int sleepAmount = Timer_getRandomNumberBetween(500, 3000);
+        long long sleepAmount = Timer_getRandomNumberBetween(MIN_WAIT_TIME_MS, MAX_WAIT_TIME_MS);
         Timer_sleepForMs(sleepAmount);
         
         JoystickDirection direction = Joystick_getDirection();
@@ -36,25 +45,25 @@ int main () {
         Led_turnOff(1);
         Led_turnOff(2);
         if (randomDirection == JOYSTICK_UP) {
-            Led_turnOn(0);
+            Led_turnOn(LED0);
         } else {
-            Led_turnOn(3);
+            Led_turnOn(LED3);
         }
 
         long long startTime = Timer_getTimeInMs();
         long long timeDiff = 0;
         long long currentTime = 0;
         direction = Joystick_getDirection();
-        while (direction == JOYSTICK_NO_DIRECTION && timeDiff < 5000) {
+        while (direction == JOYSTICK_NO_DIRECTION && timeDiff < TIMEOUT_TIME_MS) {
             direction = Joystick_getDirection();
             currentTime = Timer_getTimeInMs();
             timeDiff = currentTime - startTime;
         }
 
-        Led_turnOff(0);
-        Led_turnOff(3);
+        Led_turnOff(LED0);
+        Led_turnOff(LED3);
         
-        if (timeDiff >= 5000) {
+        if (timeDiff >= TIMEOUT_TIME_MS) {
             Output_printTimeoutQuit();
             isGameOver = true;
             continue;
@@ -75,17 +84,15 @@ int main () {
             }
 
             Output_printReactionTime(timeDiff, bestTime);
-            Led_flashAll(4);
-            Timer_sleepForMs(500);
+            Led_flashAll(WIN_FLASH_HZ);
+            Timer_sleepForMs(WIN_FLASH_TIME_MS);
             Led_unflashAll();
-
         } else {
             Output_printResult(false);
-            Led_flashAll(10);
-            Timer_sleepForMs(1000);
+            Led_flashAll(LOSE_FLASH_HZ);
+            Timer_sleepForMs(LOSE_FLASH_TIME_MS);
             Led_unflashAll();
         }
-
     }
 
     cleanUpHello();

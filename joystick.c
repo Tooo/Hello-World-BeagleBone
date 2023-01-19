@@ -9,7 +9,7 @@
 static char* directionFile = "/sys/class/gpio/gpio%d/direction";
 static char* valueFile = "/sys/class/gpio/gpio%d/value";
 
-// Up, Down, Left, Rigth
+// Up, Down, Left, Right
 static int joystickGPIO[JOYSTICK_DIRECTION_COUNT] = {26, 46, 65, 47};
 
 void Joystick_intialize(void)
