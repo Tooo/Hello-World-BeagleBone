@@ -28,6 +28,7 @@ int main () {
     long long bestTime = TIMEOUT_TIME_MS;
     while (!isGameOver) {
         Output_printStart();
+
         Led_turnOn(LED1);
         Led_turnOn(LED2);
 
@@ -40,10 +41,12 @@ int main () {
             continue;
         }
 
+        Led_turnOff(LED1);
+        Led_turnOff(LED2);
+
         JoystickDirection randomDirection = (JoystickDirection) Timer_flipCoin();
         Output_printDirection(randomDirection);
-        Led_turnOff(1);
-        Led_turnOff(2);
+
         if (randomDirection == JOYSTICK_UP) {
             Led_turnOn(LED0);
         } else {
@@ -53,6 +56,7 @@ int main () {
         long long startTime = Timer_getTimeInMs();
         long long timeDiff = 0;
         long long currentTime = 0;
+        
         direction = Joystick_getDirection();
         while (direction == JOYSTICK_NO_DIRECTION && timeDiff < TIMEOUT_TIME_MS) {
             direction = Joystick_getDirection();
