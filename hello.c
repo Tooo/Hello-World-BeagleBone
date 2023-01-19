@@ -26,6 +26,7 @@ int main () {
 
     bool isGameOver = false;
     long long bestTime = TIMEOUT_TIME_MS;
+
     while (!isGameOver) {
         Output_printReady();
 

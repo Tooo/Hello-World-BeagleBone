@@ -20,7 +20,7 @@ void Output_printReady(void)
 
 void Output_printFalseStart(void)
 {
-    printf("Too Soon!\n");
+    printf("Too soon!\n");
 }
 
 void Output_printUp(void)
@@ -50,7 +50,7 @@ void Output_printBestTime(void)
 
 void Output_printReactionTime(long long current, long long best)
 {
-    printf("Your reaction time was %lld; best so far in game is %lld\n", current, best);
+    printf("Your reaction time was %lldms; best so far in game is %lldms.\n", current, best);
 }
 
 void Output_printUserQuit(void)
