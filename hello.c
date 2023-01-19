@@ -75,9 +75,15 @@ int main () {
             }
 
             Output_printReactionTime(timeDiff, bestTime);
+            Led_flashAll(4);
+            Timer_sleepForMs(500);
+            Led_unflashAll();
 
         } else {
             Output_printResult(false);
+            Led_flashAll(10);
+            Timer_sleepForMs(1000);
+            Led_unflashAll();
         }
 
     }

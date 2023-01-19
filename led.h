@@ -17,4 +17,8 @@ void Led_turnOn(LedId ledId);
 
 void Led_turnOff(LedId ledId);
 
+void Led_flashAll(int hz);
+
+void Led_unflashAll(void);
+
 #endif
