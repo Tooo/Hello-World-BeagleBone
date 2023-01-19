@@ -4,25 +4,37 @@
 
 #include "system.h"
 
+static char* brightnessFile = "/sys/class/leds/beaglebone:green:usr%d/brightness";
+static char* triggerFile = "/sys/class/leds/beaglebone:green:usr%d/trigger";
+static char* none = "none";
+
 void Led_intialize(void)
 {
     // Set LED triggers to None
-    System_writeFile("/sys/class/leds/beaglebone:green:usr0/trigger", "none");
-    System_writeFile("/sys/class/leds/beaglebone:green:usr1/trigger", "none");
-    System_writeFile("/sys/class/leds/beaglebone:green:usr2/trigger", "none");
-    System_writeFile("/sys/class/leds/beaglebone:green:usr3/trigger", "none");
+    for (int i; i < LED_COUNT; i++) {
+        char filePath[BUFFER_MAX_LENGTH];
+        snprintf(filePath, BUFFER_MAX_LENGTH, triggerFile, i);
+        System_writeFile(triggerFile, none);
+    }
 }
 
-void Led_turnOn(int ledNumber)
+void Led_cleanUp(void)
+{
+    for (int i; i < LED_COUNT; i++) {
+        Led_turnOff(i);
+    } 
+}
+
+void Led_turnOn(LedId ledId)
 {
     char command[BUFFER_MAX_LENGTH];
-    snprintf(command, BUFFER_MAX_LENGTH, "/sys/class/leds/beaglebone:green:usr%d/brightness", ledNumber);
+    snprintf(command, BUFFER_MAX_LENGTH, brightnessFile, ledId);
     System_writeFile(command, "1");
 }
 
-void Led_turnOff(int ledNumber)
+void Led_turnOff(LedId ledId)
 {
     char command[BUFFER_MAX_LENGTH];
-    snprintf(command, BUFFER_MAX_LENGTH, "/sys/class/leds/beaglebone:green:usr%d/brightness", ledNumber);
+    snprintf(command, BUFFER_MAX_LENGTH, brightnessFile, ledId);
     System_writeFile(command, "0");   
 }
