@@ -23,7 +23,7 @@ void Joystick_intialize(void)
     // Assume GPIO already exported
 
     // Configure pin to GPIO
-    for (int i; i < JOYSTICK_DIRECTION_COUNT; i++) {
+    for (int i = 0; i < JOYSTICK_DIRECTION_COUNT; i++) {
         char filePath[BUFFER_MAX_LENGTH];
         snprintf(filePath, BUFFER_MAX_LENGTH, directionFile, joystickGPIO[i]);
         System_writeFile(filePath, "in");
@@ -37,7 +37,7 @@ void Joystick_cleanUp(void)
 
 JoystickDirection Joystick_getDirection(void)
 {
-    for (int i; i < JOYSTICK_DIRECTION_COUNT; i++) {
+    for (int i = 0; i < JOYSTICK_DIRECTION_COUNT; i++) {
         char buffer[BUFFER_MAX_LENGTH];
         char filePath[BUFFER_MAX_LENGTH];
 
