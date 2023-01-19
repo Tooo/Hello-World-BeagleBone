@@ -11,7 +11,7 @@ void Output_printStart(void);
 
 void Output_printFalseStart(void);
 
-void Output_printDirection(bool up);
+void Output_printDirection(bool down);
 
 void Output_printResult(bool correct);
 

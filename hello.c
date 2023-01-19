@@ -31,11 +31,11 @@ int main () {
             continue;
         }
 
-        bool randomDirection = Timer_flipCoin();
+        JoystickDirection randomDirection = (JoystickDirection) Timer_flipCoin();
         Output_printDirection(randomDirection);
         Led_turnOff(1);
         Led_turnOff(2);
-        if (randomDirection) {
+        if (randomDirection == JOYSTICK_UP) {
             Led_turnOn(0);
         } else {
             Led_turnOn(3);
@@ -47,7 +47,6 @@ int main () {
         direction = Joystick_getDirection();
         while (direction == JOYSTICK_NO_DIRECTION && timeDiff < 5000) {
             direction = Joystick_getDirection();
-            printf("Direction: %d\n", direction);
             currentTime = Timer_getTimeInMs();
             timeDiff = currentTime - startTime;
         }
@@ -55,7 +54,6 @@ int main () {
         Led_turnOff(0);
         Led_turnOff(3);
         
-        printf("time Diff: %lld\n", timeDiff);
         if (timeDiff >= 5000) {
             Output_printTimeoutQuit();
             isGameOver = true;

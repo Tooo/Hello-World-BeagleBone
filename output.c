@@ -23,12 +23,12 @@ void Output_printFalseStart(void)
     printf("Too Soon!\n");
 }
 
-void Output_printDirection(bool up)
+void Output_printDirection(bool down)
 {
-    if (up) {
-        printf("Press UP now!\n");
-    } else {
+    if (down) {
         printf("Press DOWN now!\n");
+    } else {
+        printf("Press UP now!\n");
     }
 }
 
@@ -48,7 +48,7 @@ void Output_printBestTime(void)
 
 void Output_printReactionTime(long long current, long long best)
 {
-    printf("Your reaction time was %lld; best so far in game is %lld", current, best);
+    printf("Your reaction time was %lld; best so far in game is %lld\n", current, best);
 }
 
 void Output_printUserQuit(void)
