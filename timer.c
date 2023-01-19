@@ -33,7 +33,7 @@ void Timer_intializeRandom(void)
     srand(time(&t));
 }
 
-int Timer_getRandomNumberBetween(int a, int b)
+long long Timer_getRandomNumberBetween(long long a, long long b)
 {
     int diff = b - a + 1;
     int value = rand() % diff;

@@ -9,7 +9,7 @@ void Timer_sleepForMs(long long delayInMs);
 
 void Timer_intializeRandom(void);
 
-int Timer_getRandomNumberBetween(int a, int b);
+long long Timer_getRandomNumberBetween(long long a, long long b);
 
 bool Timer_flipCoin();
 
