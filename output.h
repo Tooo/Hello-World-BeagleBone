@@ -7,13 +7,17 @@ void Output_printWelcome(void);
 
 void Output_printInstructions(void);
 
-void Output_printStart(void);
+void Output_printReady(void);
 
 void Output_printFalseStart(void);
 
-void Output_printDirection(bool down);
+void Output_printUp(void);
 
-void Output_printResult(bool correct);
+void Output_printDown(void);
+
+void Output_printWin(void);
+
+void Output_printLose(void);
 
 void Output_printBestTime(void);
 

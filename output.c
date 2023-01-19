@@ -13,7 +13,7 @@ void Output_printInstructions(void)
     printf("(Press left or right to exit)\n");
 }
 
-void Output_printStart(void)
+void Output_printReady(void)
 {
     printf("Get ready...\n");
 }
@@ -23,22 +23,24 @@ void Output_printFalseStart(void)
     printf("Too Soon!\n");
 }
 
-void Output_printDirection(bool down)
+void Output_printUp(void)
 {
-    if (down) {
-        printf("Press DOWN now!\n");
-    } else {
-        printf("Press UP now!\n");
-    }
+    printf("Press UP now!\n");
 }
 
-void Output_printResult(bool correct)
+void Output_printDown(void)
 {
-    if (correct) {
-        printf("Correct!\n");
-    } else {
-        printf("Incorrect.\n");
-    }
+    printf("Press DOWN now!\n");
+}
+
+void Output_printWin(void)
+{
+    printf("Correct!\n");
+}
+
+void Output_printLose(void)
+{
+    printf("Incorrect.\n");
 }
 
 void Output_printBestTime(void)
