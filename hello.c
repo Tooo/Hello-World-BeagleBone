@@ -9,11 +9,12 @@
 #include "joystick.h"
 #include "timer.h"
 
-// Timeout/Wait Time in Micro Seconds
+// Timeout/Wait Time in miliseconds
 #define TIMEOUT_TIME_MS 5000
 #define MIN_WAIT_TIME_MS 500
 #define MAX_WAIT_TIME_MS 3000
 
+// Winning/losing flashes
 #define WIN_FLASH_HZ 4
 #define WIN_FLASH_TIME_MS 500
 #define LOSE_FLASH_HZ 10
