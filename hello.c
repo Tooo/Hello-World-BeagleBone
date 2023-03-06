@@ -1,3 +1,5 @@
+// hello.c
+// Hello World Game for BeagleBone
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -7,6 +9,7 @@
 #include "joystick.h"
 #include "timer.h"
 
+// Timeout/Wait Time in Micro Seconds
 #define TIMEOUT_TIME_MS 5000
 #define MIN_WAIT_TIME_MS 500
 #define MAX_WAIT_TIME_MS 3000
@@ -16,6 +19,7 @@
 #define LOSE_FLASH_HZ 10
 #define LOSE_FLASH_TIME_MS 1000
 
+// Initialize/cleanup the module's data structures.
 static void intializeHello(void);
 static void cleanUpHello(void);
 

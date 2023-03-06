@@ -1,6 +1,7 @@
-#include "output.h"
 #include <stdio.h>
 #include <stdbool.h>
+
+#include "output.h"
 
 void Output_printWelcome(void)
 {

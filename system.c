@@ -1,8 +1,8 @@
-#include "system.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+
+#include "system.h"
 
 void System_runCommand(char* command)
 {

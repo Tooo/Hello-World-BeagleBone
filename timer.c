@@ -1,9 +1,10 @@
-#include "timer.h"
-
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
 
+#include "timer.h"
+
+// Time conversions
 static const long long NS_PER_MS = 1000 * 1000;
 static const long long NS_PER_SECOND = 1000000000;
 

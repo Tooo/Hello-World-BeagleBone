@@ -1,11 +1,11 @@
-#include "joystick.h"
-
 #include <string.h>
 #include <stdio.h>
 
+#include "joystick.h"
 #include "system.h"
 #include "timer.h"
 
+// Joystick Files
 static char* directionFile = "/sys/class/gpio/gpio%d/direction";
 static char* valueFile = "/sys/class/gpio/gpio%d/value";
 
