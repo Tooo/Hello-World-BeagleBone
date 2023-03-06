@@ -9,7 +9,7 @@ Test your reaction time with joystick and LED light on the BeagleBone Zencape. S
 
 2. Make excutable file on the host
 ```bash
-(host)$ git clone https://github.com/Tooo/Hello-World-BeagleBone.git
+make
 ```
 
 3. Run excutable on the BeagleBone
